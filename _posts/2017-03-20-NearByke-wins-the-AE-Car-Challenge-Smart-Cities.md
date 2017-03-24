@@ -1,0 +1,30 @@
+---
+layout: post
+title: "Nearbyke wins the AE Car Challenge: Smart Cities"
+image: "assets/images/AE.jpg"
+excerpt_separator: <!--more-->
+---
+
+Lorem ipsum dolor sit amet, consectetur 
+adipiscing elit. Etiam vitae risus lorem. 
+Aenean nec urna pulvinar, condimentum 
+quam non, luctus libero. Mauris cursus 
+sagittis elementum. Duis semper rhoncus 
+rutrum. Mauris sodales nibh id purus 
+pulvinar varius nec hendrerit tellus. 
+Etiam condimentum dolor diam, ac tristique 
+dui vulputate ac. Sed sed efficitur justo, 
+vitae molestie lectus. Aliquam porta risus 
+non nulla molestie faucibus et vitae quam. 
+Sed imperdiet et lectus vel rutrum. Nam eu 
+ipsum odio. Orci varius natoque penatibus et 
+magnis dis parturient montes, nascetur 
+ridiculus mus. Sed a sodales urna. Lorem 
+ipsum dolor sit amet, consectetur adipiscing 
+elit. Nunc vel tellus et sapien efficitur 
+imperdiet. Phasellus malesuada eros mauris, 
+a ultrices nisl aliquet eget.
+
+<!--more-->
+
+In quis quam fringilla, commodo elit eget, molestie enim. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In semper eu nunc in ultrices. Nulla ac tellus eget purus cursus pharetra non quis dui. Morbi sagittis, dui a ultricies iaculis, eros nisl vestibulum purus, id pretium urna lectus bibendum erat. Mauris auctor pharetra enim at varius. Suspendisse interdum lacus ut ex tempus semper. Pellentesque facilisis dolor eu ante fermentum, in scelerisque risus porttitor. Aenean convallis est elit. Cras massa mauris, tincidunt nec arcu congue, mollis condimentum risus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas enim lectus, tristique faucibus eleifend sed, fermentum nec risus. Vivamus maximus tempus bibendum.

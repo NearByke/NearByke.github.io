@@ -1,0 +1,22 @@
+.post {
+	margin: 1em auto 2em auto;
+}
+
+.post img {
+	width: 100%;
+}
+
+.post-title {
+	margin: 0.5em 0;
+}
+
+.post-nav {
+	padding: 2em 0;
+}
+
+.post-nav a {
+	color: $Primary;
+	font-weight: bold;
+	font-family: Rounded-mt-Bold;
+	font-size: 2em;
+}

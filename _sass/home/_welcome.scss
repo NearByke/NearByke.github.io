@@ -1,0 +1,61 @@
+#base_info {
+	min-height: 100vh;
+	position: relative;
+	background: transparent;
+}
+
+#intro {	
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#name {
+	text-align:center;
+	color: $Primary;
+	font-family: Rounded-mt-Bold;
+	font-size: 7em;
+}
+
+#name .byke {
+    text-shadow: 0 0 150px black;
+}
+
+#slogan {
+	text-align: center;
+	color: White;
+	font-size: 3em;
+	margin-top: 1em;
+	background: $GreyDark;
+	padding: 0.2em 0;
+}
+
+h2 {
+	margin-top: 2em;
+}
+
+#posts {
+	margin: 2em auto;
+	background: white;
+}
+
+#news {
+	text-align: center;
+	font-weight: bold;
+}
+
+#parallax-intermezzo {
+	min-height: 33vh;
+	background: transparent;
+}
+
+@media (max-width: 1200px) {
+    #name {
+    	font-size: 5em;
+    }
+
+    #slogan {
+    	font-size: 2em;
+    }
+}

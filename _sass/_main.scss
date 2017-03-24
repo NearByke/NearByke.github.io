@@ -1,0 +1,61 @@
+$Primary: #FFC107;
+$GreyLight: #F5F5F5;
+$GreyMedium: #757575;
+$GreyDark: #424242;
+
+$FooterHeight: 150px;
+
+@media (min-width: 900px) {
+    .container{
+        max-width: 900px;
+    }
+}
+
+* { 
+    margin: 0;
+    padding: 0;
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+    box-sizing: border-box; 
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+main {
+    min-height: 100%;
+    overflow: auto;
+    padding-bottom: $FooterHeight;
+}
+
+@font-face {
+    font-family: Rounded-mt-Bold;
+    src: url(../fonts/rounded-mt-bold.ttf);
+}
+
+.title_white {
+    color: White;
+}
+
+.near {
+    color: $GreyDark;
+    background: $Primary;
+    padding: 0 0.05em;
+    display: inline-block;
+}
+
+.post-nav a:hover {
+    text-decoration: none;
+}
+
+.byke {
+    color: $Primary;
+    padding: 0 0.05em;
+    display: inline-block;
+}

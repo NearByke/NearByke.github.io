@@ -1,0 +1,30 @@
+---
+layout: default
+---
+
+<div id="home">
+
+	<div class="parallax-container" data-parallax="scroll" data-image-src="assets/images/Header.jpg" data-natural-height="1125" data-natural-width="1688" data-bleed="10">
+		
+		<div id="base_info" class="jumbotron">	
+			<div id="intro">
+				<h1 id="name"><span class="near">NEAR</span><span class="byke">BYKE</span></h1>
+				<h2 id="slogan">Always a bike nearby</h2>
+			</div>
+		</div>
+	</div>
+
+	<div id="posts">
+		<div class="container">
+
+			<h2 id="news">News</h2>
+
+			{% for post in site.posts %}
+				{% include post-preview.html post=post %}
+			{% endfor %}
+		</div>
+	</div>
+
+	<!--<div id="parallax-intermezzo" data-parallax="scroll" data-image-src="assets/images/Intermezzo.jpg" data-natural-height="1125" data-natural-width="1688" data-bleed="10">-->
+
+</div>
