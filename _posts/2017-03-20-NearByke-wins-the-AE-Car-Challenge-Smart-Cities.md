@@ -5,26 +5,15 @@ image: "assets/images/AE.jpg"
 excerpt_separator: <!--more-->
 ---
 
-Lorem ipsum dolor sit amet, consectetur 
-adipiscing elit. Etiam vitae risus lorem. 
-Aenean nec urna pulvinar, condimentum 
-quam non, luctus libero. Mauris cursus 
-sagittis elementum. Duis semper rhoncus 
-rutrum. Mauris sodales nibh id purus 
-pulvinar varius nec hendrerit tellus. 
-Etiam condimentum dolor diam, ac tristique 
-dui vulputate ac. Sed sed efficitur justo, 
-vitae molestie lectus. Aliquam porta risus 
-non nulla molestie faucibus et vitae quam. 
-Sed imperdiet et lectus vel rutrum. Nam eu 
-ipsum odio. Orci varius natoque penatibus et 
-magnis dis parturient montes, nascetur 
-ridiculus mus. Sed a sodales urna. Lorem 
-ipsum dolor sit amet, consectetur adipiscing 
-elit. Nunc vel tellus et sapien efficitur 
-imperdiet. Phasellus malesuada eros mauris, 
-a ultrices nisl aliquet eget.
+Nearbyke has won the AE Car Challenge, which this year focussed on Smart Cities.
+Nearbyke's pitch about their new free-floating bike share system with a unique payment model was elected as winner by the jury.
 
 <!--more-->
 
-In quis quam fringilla, commodo elit eget, molestie enim. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In semper eu nunc in ultrices. Nulla ac tellus eget purus cursus pharetra non quis dui. Morbi sagittis, dui a ultricies iaculis, eros nisl vestibulum purus, id pretium urna lectus bibendum erat. Mauris auctor pharetra enim at varius. Suspendisse interdum lacus ut ex tempus semper. Pellentesque facilisis dolor eu ante fermentum, in scelerisque risus porttitor. Aenean convallis est elit. Cras massa mauris, tincidunt nec arcu congue, mollis condimentum risus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas enim lectus, tristique faucibus eleifend sed, fermentum nec risus. Vivamus maximus tempus bibendum.
+The AE Car Challenge is a competition organized by [AE - Architects for business & ICT](https://www.ae.be/en/ae-architects-for-business-ict). 
+This edition, the goal was to present an innovative idea in the theme of Smart Cities.
+During the run-up towards the final pitch, the teams were offered workshops and professional help from consultants to work out the ideation phase of their project.
+
+At the final event, each team had the opportunity to pitch for a jury of professionals and field experts. 
+Nearbyke was elected as winner and went home with the first prize, 4 months in a BMW cabrio.
+This sure might come in handy while they develop their project even further.
