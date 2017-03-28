@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "NearByke gets selected for the Watt Factory Accelerator program"
+title: "NearByke gets selected for the Watt Factory Accelerator programme"
 image: "assets/images/Watt.jpg"
 excerpt_separator: <!--more-->
 ---
