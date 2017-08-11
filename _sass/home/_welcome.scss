@@ -6,28 +6,35 @@
 
 #intro {	
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	top: 7%;
+	left: 8%;
+	transform: translate(-7%, -8%);
+	display: inline-block;
+}
+
+#logo {
+    float: left;
+    margin-right: 2em;
 }
 
 #name {
+	display: inline-block;
 	text-align:center;
 	color: $Primary;
-	font-family: Rounded-mt-Bold;
 	font-size: 7em;
+	font-weight: bold;
 }
 
 #name .byke {
-    text-shadow: 5px 0 50px rgba(0, 0, 0, 0.6);
+    text-shadow: 5px 0 50px rgba(255, 255, 255, 0.3);
 }
 
 #slogan {
 	text-align: center;
 	color: White;
 	font-size: 3em;
-	margin-top: 1em;
-	background: $GreyDark;
+	margin-top: 0.7em;
+	background: $PrimaryDark;
 	padding: 0.2em 0;
 }
 
@@ -58,4 +65,14 @@ h2 {
     #slogan {
     	font-size: 2em;
     }
+
+    #logo {
+		display: none;
+    }
+
+	#intro {	
+		top: 7%;
+		left: 50%;
+		transform: translate(-50%, -7%);
+	}
 }

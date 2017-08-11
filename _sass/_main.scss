@@ -1,4 +1,5 @@
-$Primary: #FFC107;
+$Primary: #00ACC1;
+$PrimaryDark: #007C91;
 $GreyLight: #F5F5F5;
 $GreyMedium: #757575;
 $GreyDark: #424242;
@@ -48,8 +49,7 @@ main {
 }
 
 .near {
-    color: $GreyDark;
-    background: $Primary;
+    color: $Primary;
     padding: 0 0.05em;
     display: inline-block;
 }
@@ -59,7 +59,7 @@ main {
 }
 
 .byke {
-    color: $Primary;
+    color: $GreyDark;
     padding: 0 0.05em;
     display: inline-block;
 }
