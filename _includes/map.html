@@ -1,0 +1,167 @@
+
+
+<script>
+    console.log(1)
+    var mymap = '';
+    var stationsmeta = '';
+    $.ajax({
+        url: 'http://35.195.145.200/system0002/stations',       
+        dataType: 'json',
+        success: function(stations) {
+            console.log(2)
+            stationsmeta = stations
+            var minlat = 91;
+            var maxlat = -91;
+            var minlng = 181;
+            var maxlng = -181;
+            for (i = 0; i < stations.length; i++) { 
+                if (stations[i].lat < minlat) {
+                    minlat = stations[i].lat;
+                }
+                if (stations[i].lat > maxlat) {
+                    maxlat = stations[i].lat;
+                }
+                if (stations[i].lng < minlng) {
+                    minlng = stations[i].lng;
+                }
+                if (stations[i].lng > maxlng) {
+                    maxlng = stations[i].lng;
+                }
+            }
+            minlat = Number(minlat)
+            maxlat = Number(maxlat)
+            minlng = Number(minlng)
+            maxlng = Number(maxlng)
+            centerlat = (minlat + maxlat)/2;
+            centerlng = (minlng + maxlng)/2;
+
+            mymap = L.map('map', {
+                center: [centerlat, centerlng], 
+                zoom: 13,
+                scrollWheelZoom: false});
+
+
+            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+                maxZoom: 18,
+                id: 'mapbox.light',
+                accessToken: 'pk.eyJ1IjoibmVhcmJ5a2UiLCJhIjoiY2o5d2w0YXJvNGgxejJxcGhwdmF0NjcwMiJ9.vam3m5kp9Xfj6Xgu1n5Dzg'
+            }).addTo(mymap);
+
+            $.ajax({
+                url: 'http://35.195.145.200/system/0002/stations/occupancy',       
+                dataType: 'json',
+                success: function(stations) {       
+                    console.log(3)
+                    for (i = 0; i < stationsmeta.length; i++) {
+                        var id = stationsmeta[i].id.toString()
+                        if (Number(stationsmeta[i]) != 0) {
+                            var occupancy = Number(stations[id])/Number(stationsmeta[i].capacity)
+                                var circle = L.circle([stationsmeta[i].lat, stationsmeta[i].lng], {
+                                color: 'red',
+                                fillColor: '#f03',
+                                fillOpacity: 0.8,
+                                radius: occupancy * 100
+                            }).addTo(mymap);
+                        }
+                    }
+                }
+            })
+        }
+    });
+</script>
+
+<!--
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoibmVhcmJ5a2UiLCJhIjoiY2o5d2w0YXJvNGgxejJxcGhwdmF0NjcwMiJ9.vam3m5kp9Xfj6Xgu1n5Dzg';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/light-v9'
+    });
+
+    map.on('load', function () {
+
+        map.addLayer({
+            'id': 'population',
+            'type': 'circle',
+            'source': {
+                type: 'vector',
+                url: 'mapbox://examples.8fgz4egr'
+            },
+            'source-layer': 'sf2010',
+            'paint': {
+                // make circles larger as the user zooms from z12 to z22
+                'circle-radius': {
+                    'base': 1.75,
+                    'stops': [[12, 2], [22, 180]]
+                },
+                // color circles by ethnicity, using data-driven styles
+                'circle-color': {
+                    property: 'ethnicity',
+                    type: 'categorical',
+                    stops: [
+                        ['White', '#fbb03b'],
+                        ['Black', '#223b53'],
+                        ['Hispanic', '#e55e5e'],
+                        ['Asian', '#3bb2d0'],
+                        ['Other', '#ccc']]
+                }
+            }
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(function() {
+        // initialize tooltips
+        $.fn.qtip.defaults.style.classes = 'ui-tooltip-bootstrap';
+        $.fn.qtip.defaults.style.def = false;
+        var map = kartograph.map('#map');
+        map.loadMap('/assets/images/DE.svg', function() {
+            map.addLayer('context', {
+                styles: {
+                    stroke: '#aaa',
+                    fill: '#f6f4f2'
+                }
+            });
+            map.addLayer('regions', {
+                id: 'bg',
+                styles: {
+                    stroke: '#d8d6d4',
+                    'stroke-width': 10,
+                    'stroke-linejoin': 'round'
+                }
+            });
+            map.addLayer('regions', {
+                title: function(d) { return d.name },
+                styles: {
+                    stroke: '#333',
+                    fill: '#fff'
+                }
+            });
+            $.ajax({
+                url: 'http://35.195.145.200/system0001/stations',
+                dataType: 'json',
+                success: function(stations) {
+                    var scale = kartograph.scale.sqrt(stations.concat([{ id: 0 }]), 'id').range([0, 60]);
+                    map.addSymbols({
+                        type: kartograph.Bubble,
+                        data: stations,
+                        location: function(station) {
+                            return [station.lng, station.lat];
+                        },
+                        radius: function(station) {
+                            return 5;
+                        },
+                        tooltip: function(station) {
+                            return '<h3>'+station.name+'</h3>'+station.address+' visits';
+                        },
+                        sortBy: 'radius desc',
+                        style: 'fill:#800; stroke: #fff; fill-opacity: 0.5;',
+                    });
+                }
+            });
+        }, { padding: -5 });
+    });
+</script>
+-->

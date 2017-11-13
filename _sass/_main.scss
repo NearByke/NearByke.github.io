@@ -33,7 +33,7 @@ html, body {
     height: 100%;
 }
 
-main {
+.page_content, .page-content {
     min-height: 100%;
     overflow: auto;
     padding-bottom: $FooterHeight;

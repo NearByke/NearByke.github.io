@@ -1,25 +1,153 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {% include head.html %}
+
+  <body>
+
+    <main aria-label="Content">
+      <div class="wrapper">
 
 <div id="home">
 
-	<div class="parallax-container" data-parallax="scroll" data-image-src="assets/images/Header.jpg" data-natural-height="1125" data-natural-width="1688" data-bleed="10">
-		
-		<div id="base_info" class="jumbotron">	
-			<div id="intro">
-				<img id="logo" src="{{ site.baseurl }}/assets/images/NearByke_logo.svg" alt="NearByke logo">
-				<h1 id="name"><span class="near">NEAR</span><span class="byke">BYKE</span></h1>
-				<!--<h2 id="slogan">Always a bike nearby</h2>-->
-			</div>
+	<!--<div id="map" class="parallax-container" data-parallax="scroll" data-image-src="assets/images/Header.jpg" data-natural-height="1125" data-natural-width="1688" data-bleed="10">-->
+	
+	<div id="base_info" class="jumbotron">	
+		<div id="map" style="height: 100vh; width: 100%"></div>
+		<div id="intro" style="z-index: 9999">
+			<img id="logo" src="{{ site.baseurl }}/assets/images/NearByke_logo.svg" alt="NearByke logo">
+			<h1 id="name"><span class="near">NEAR</span><span class="byke">BYKE</span></h1>
+			<!--<h2 id="slogan">Always a bike nearby</h2>-->
 		</div>
+		<div id="info" style="z-index: 999">
+			<p>A lot of bike share systems suffer from a rebalacing problem. NearByke solves this problem in a green and cost effective way, by incentivizing users to redistribute the bikes themselves.</p>
+			<p>This live map demonstrates the rebalancing problem in Paris:</p>
+			<p>Total stations: <span id="stations_total"></span></p>
+			<p>Full stations: <span id="stations_full"></span></p>
+			<p>Empty stations: <span id="stations_empty"></span></p>
+		</div>
+		<div id="last_updated" style="z-index: 999">
+			<p>Last updated on: <span id="updated_on"></span></p>
+		</div>
+		<img id="arrow-down" src="assets/images/arrow_down.svg">
 	</div>
+	<!--</div>-->
 	
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  	<script src="/assets/scripts/parallax.js"></script>
+  	<!--<script src="/assets/scripts/parallax.js"></script>-->
 
-	<div id="posts">
-		<div class="container">
+  	<script>
+  		var colors = {
+  			'regular': '#00ACC1', //'#007C91',
+			'full':  '#B71C1C', //'#00ACC1',
+			'empty': '#424242' //'#424242'
+		}
+	    var mymap = '';
+	    var stationsmeta = '';
+	    $.ajax({
+	        url: 'http://35.195.145.200/system0002/stations',       
+	        dataType: 'json',
+	        success: function(stations) {
+	            stationsmeta = stations
+	            var minlat = 91;
+	            var maxlat = -91;
+	            var minlng = 181;
+	            var maxlng = -181;
+	            for (i = 0; i < stations.length; i++) { 
+	                if (stations[i].lat < minlat) {
+	                    minlat = stations[i].lat;
+	                }
+	                if (stations[i].lat > maxlat) {
+	                    maxlat = stations[i].lat;
+	                }
+	                if (stations[i].lng < minlng) {
+	                    minlng = stations[i].lng;
+	                }
+	                if (stations[i].lng > maxlng) {
+	                    maxlng = stations[i].lng;
+	                }
+	            }
+	            minlat = Number(minlat)
+	            maxlat = Number(maxlat)
+	            minlng = Number(minlng)
+	            maxlng = Number(maxlng)
+	            centerlat = (minlat + maxlat)/2;
+	            centerlng = (minlng + maxlng)/2;
+
+	            mymap = L.map('base_info', {
+	                center: [centerlat, centerlng], 
+	                zoom: 13,
+	                scrollWheelZoom: false});
+
+
+	            L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+	                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+	                maxZoom: 18,
+	                id: 'mapbox.light',
+	                accessToken: 'pk.eyJ1IjoibmVhcmJ5a2UiLCJhIjoiY2o5d2w0YXJvNGgxejJxcGhwdmF0NjcwMiJ9.vam3m5kp9Xfj6Xgu1n5Dzg'
+	            }).addTo(mymap);
+
+	            ajax_call();
+				setInterval(ajax_call, 1000*60);
+	        }
+	    });
+
+	    var circles = new Array();
+	    var ajax_call = function() {
+	    	for (circle in circles) {
+	    		mymap.removeLayer(circles[circle]);
+	    	}
+	    	circles = new Array();
+	  		$.ajax({
+                url: 'http://35.195.145.200/system/0002/stations/occupancy',       
+                dataType: 'json',
+                success: function(stations) { 
+                	var stations_full = 0;
+                	var stations_empty = 0;    
+                    for (i = 0; i < stationsmeta.length; i++) {
+                        var id = stationsmeta[i].id.toString();
+                        if (Number(stationsmeta[i]) != 0) {
+                            var occupancy = Number(stations[id])/Number(stationsmeta[i].capacity);
+                            var bordercolor = colors['regular']
+                            var color = colors['regular'];
+                            var oppacity = 0.5;
+                            if (occupancy < 0.05) {
+                            	color = colors['empty']
+	                            oppacity = 0.8;
+	                            if (occupancy == 0) {
+	                            	bordercolor = colors['empty'];
+	                            	stations_empty++
+	                            }
+	                        }
+	                        else if (occupancy > 0.95) {
+	                        	color = colors['full']
+                            	oppacity = 0.8;
+                            	if (occupancy == 1) {
+                            		bordercolor = colors['full'];
+                            		stations_full++
+                            	}
+                        	}
+                            var circle = L.circle([stationsmeta[i].lat, stationsmeta[i].lng], {
+                                color: bordercolor,
+                                fillColor: color,
+                                fillOpacity: oppacity,
+                                radius: Number(stationsmeta[i].capacity) * 2
+                            }).bindTooltip(stationsmeta[i].name.split(' - ')[1] + ': ' + stations[id].toString() + '/' + stationsmeta[i].capacity.toString()).addTo(mymap);
+                            circles.push(circle)
+                        }
+                    }
+                    now = new Date()
+                    document.getElementById("updated_on").textContent= now.toUTCString();
+                    document.getElementById("stations_total").textContent= stationsmeta.length;
+                    document.getElementById("stations_full").textContent= stations_full	+ ' (' + Math.round(100 * stations_full/stationsmeta.length) + '%)';
+                    document.getElementById("stations_empty").textContent= stations_empty + ' (' + Math.round(100 * stations_empty/stationsmeta.length) + '%)';
+                }
+            })
+		};
+	</script>
+
+	<div id="main_home">
+		<div id="posts"class="container">
 
 			<h2 id="news">News</h2>
 
@@ -27,8 +155,16 @@ layout: default
 				{% include post-preview.html post=post %}
 			{% endfor %}
 		</div>
+
+		{% include footer.html %}
 	</div>
 
 	<!--<div id="parallax-intermezzo" data-parallax="scroll" data-image-src="assets/images/Intermezzo.jpg" data-natural-height="1125" data-natural-width="1688" data-bleed="10">-->
 
 </div>
+      </div>
+    </main>
+
+  </body>
+
+</html>
