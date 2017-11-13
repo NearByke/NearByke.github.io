@@ -138,14 +138,14 @@ h2 {
 
 @media (max-width: 1200px) {
     #name {
-    	font-size: 5em;
+    	font-size: 5em;		
     }
 
     #slogan {
     	font-size: 2em;
     }
 
-    #logo {
+    #logo, #info, #map, #last_updated, #arrow_down {
 		display: none;
     }
 
@@ -153,5 +153,9 @@ h2 {
 		top: 7%;
 		left: 50%;
 		transform: translate(-50%, -7%);
+	}
+
+	#base_info {
+		min-height: 0px;
 	}
 }
