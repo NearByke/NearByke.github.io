@@ -45,9 +45,25 @@
 	    var mymap = '';
 	    var stationsmeta = '';
 	    $.ajax({
-	        url: 'http://35.195.145.200/system/0002/stations',       
+	        url: 'https://api.jcdecaux.com/vls/v1/stations',  
+	        data: {'apiKey': '3058b531ecafd54d088c480e3d3aaf90df1f61ec',
+	    		   'contract': 'Paris'},
 	        dataType: 'json',
-	        success: function(stations) {
+	        success: function(json) {
+	        	var stations = [];
+	        	for (r in json) {
+	        		var row = json[r]
+	        		stations.push({
+	        			'id': row['number'],
+	                     'name': row['name'],
+	                     'lat': row['position']['lat'],
+	                     'lng': row['position']['lng'],
+	                     'address': row['address'],
+	                     'capacity': row['bike_stands'],
+	                     'occupancy': row['available_bikes'],
+	                     'status': row['status'],
+                     })
+	        	}
 	            stationsmeta = stations
 	            var minlat = 91;
 	            var maxlat = -91;
@@ -98,9 +114,17 @@
 	    var circles = new Array();
 	    var ajax_call = function() {
 	  		$.ajax({
-                url: 'http://35.195.145.200/system/0002/stations/occupancy',       
-                dataType: 'json',
-                success: function(stations) { 
+		        url: 'https://api.jcdecaux.com/vls/v1/stations',  
+		        data: {'apiKey': '3058b531ecafd54d088c480e3d3aaf90df1f61ec',
+		    		   'contract': 'Paris'},
+		        dataType: 'json',
+		        success: function(json) {
+		        	var stations = {};
+		        	for (r in json) {
+	        			var row = json[r]
+	        			id = row['number']
+		        		stations[id] = row['available_bikes']
+		        	}
 			    	for (circle in circles) {
 			    		mymap.removeLayer(circles[circle]);
 			    	}
