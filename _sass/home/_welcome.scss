@@ -19,6 +19,12 @@
 	transform: translateZ(-1px) scale(2);
 }
 
+#map {
+	text-align: center;
+	height: 100vh;
+	line-height: 100vh;
+}
+
 #intro {	
 	position: absolute;
 	top: 7%;

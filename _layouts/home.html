@@ -13,7 +13,7 @@
 	<!--<div id="map" class="parallax-container" data-parallax="scroll" data-image-src="assets/images/Header.jpg" data-natural-height="1125" data-natural-width="1688" data-bleed="10">-->
 	
 	<div id="base_info" class="jumbotron">	
-		<div id="map" style="height: 100vh; width: 100%"></div>
+		<div id="map" style="height: 100vh; width: 100%">Loading map...</div>
 		<div id="intro" style="z-index: 9999">
 			<img id="logo" src="{{ site.baseurl }}/assets/images/NearByke_logo.svg" alt="NearByke logo">
 			<h1 id="name"><span class="near">NEAR</span><span class="byke">BYKE</span></h1>
@@ -45,7 +45,7 @@
 	    var mymap = '';
 	    var stationsmeta = '';
 	    $.ajax({
-	        url: 'http://35.195.145.200/system0002/stations',       
+	        url: 'http://35.195.145.200/system/0002/stations',       
 	        dataType: 'json',
 	        success: function(stations) {
 	            stationsmeta = stations
@@ -78,7 +78,8 @@
 	                center: [centerlat, centerlng], 
 	                zoom: 13,
 	                scrollWheelZoom: false,
-	                dragging: false
+	                dragging: !L.Browser.mobile,
+	                tap: !L.Browser.mobile
 	            });
 
 
@@ -96,14 +97,14 @@
 
 	    var circles = new Array();
 	    var ajax_call = function() {
-	    	for (circle in circles) {
-	    		mymap.removeLayer(circles[circle]);
-	    	}
-	    	circles = new Array();
 	  		$.ajax({
                 url: 'http://35.195.145.200/system/0002/stations/occupancy',       
                 dataType: 'json',
                 success: function(stations) { 
+			    	for (circle in circles) {
+			    		mymap.removeLayer(circles[circle]);
+			    	}
+			    	circles = new Array();
                 	var stations_full = 0;
                 	var stations_empty = 0;    
                     for (i = 0; i < stationsmeta.length; i++) {
