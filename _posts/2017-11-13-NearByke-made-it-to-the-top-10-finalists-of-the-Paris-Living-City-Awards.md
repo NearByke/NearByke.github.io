@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "NearByke made it to the finals of the Paris Living City Awards"
+title: "NearByke made it to the final of the Paris Living City Awards"
 image: "assets/images/grandprix.png"
 excerpt_separator: <!--more-->
 ---
