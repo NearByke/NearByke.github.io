@@ -1,11 +1,11 @@
 ---
 layout: post
-title: "NearByke made it to the top 10 finalists of the Paris Living City Awards"
+title: "NearByke made it to the finals of the Paris Living City Awards"
 image: "assets/images/grandprix.png"
 excerpt_separator: <!--more-->
 ---
 
-We are pleased to announce that NearByke made it to the [top 10 finalists of the Paris Living City Awards](http://www.grandsprixinnovation.paris/en/gpi115-paris-living-city-awards.html), an international startup competition that is part of [Grands Prix de L’Innovation](http://www.grandsprixinnovation.paris/en/). 
+We are pleased to announce that NearByke made it to the [top 10 of the Paris Living City Awards](http://www.grandsprixinnovation.paris/en/gpi115-paris-living-city-awards.html), an international startup competition that is part of [Grands Prix de L’Innovation](http://www.grandsprixinnovation.paris/en/). 
 
 <!--more-->
 
