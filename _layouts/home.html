@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<html lang='{{ page.lang | default: site.lang | default: "en" }}'>
 
   {% include head.html %}
 
@@ -45,25 +45,9 @@
 	    var mymap = '';
 	    var stationsmeta = '';
 	    $.ajax({
-	        url: 'https://api.jcdecaux.com/vls/v1/stations',  
-	        data: {'apiKey': '3058b531ecafd54d088c480e3d3aaf90df1f61ec',
-	    		   'contract': 'Paris'},
+	        url: 'http://35.201.127.153/system/0002/stations',
 	        dataType: 'json',
-	        success: function(json) {
-	        	var stations = [];
-	        	for (r in json) {
-	        		var row = json[r]
-	        		stations.push({
-	        			'id': row['number'],
-	                     'name': row['name'],
-	                     'lat': row['position']['lat'],
-	                     'lng': row['position']['lng'],
-	                     'address': row['address'],
-	                     'capacity': row['bike_stands'],
-	                     'occupancy': row['available_bikes'],
-	                     'status': row['status'],
-                     })
-	        	}
+	        success: function(stations) {
 	            stationsmeta = stations
 	            var minlat = 91;
 	            var maxlat = -91;
@@ -114,17 +98,9 @@
 	    var circles = new Array();
 	    var ajax_call = function() {
 	  		$.ajax({
-		        url: 'https://api.jcdecaux.com/vls/v1/stations',  
-		        data: {'apiKey': '3058b531ecafd54d088c480e3d3aaf90df1f61ec',
-		    		   'contract': 'Paris'},
-		        dataType: 'json',
-		        success: function(json) {
-		        	var stations = {};
-		        	for (r in json) {
-	        			var row = json[r]
-	        			id = row['number']
-		        		stations[id] = row['available_bikes']
-		        	}
+                url: 'http://35.201.127.153/system/0002/stations/occupancy',
+                dataType: 'json',
+                success: function(stations) {
 			    	for (circle in circles) {
 			    		mymap.removeLayer(circles[circle]);
 			    	}
