@@ -21,7 +21,7 @@
 		</div>
 		<div id="info" style="z-index: 999">
 			<p>A lot of bike share systems suffer from a rebalancing problem. NearByke solves this problem in a green and cost effective way, by incentivizing users to redistribute the bikes themselves.</p>
-			<p>This live map demonstrates the rebalancing problem in Paris:</p>
+			<p>This live map demonstrates the rebalancing problem in New York:</p>
 			<p>Total stations: <span id="stations_total"></span></p>
 			<p>Full stations: <span id="stations_full"></span></p>
 			<p>Empty stations: <span id="stations_empty"></span></p>
@@ -53,7 +53,10 @@
 	            var maxlat = -91;
 	            var minlng = 181;
 	            var maxlng = -181;
-	            for (i = 0; i < stations.length; i++) { 
+	            for (i = 0; i < stations.length; i++) {
+	                if (stations[i].lat === 0 && stations[i].lng === 0) {
+	                    continue
+					}
 	                if (stations[i].lat < minlat) {
 	                    minlat = stations[i].lat;
 	                }
